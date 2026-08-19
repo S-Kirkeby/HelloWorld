@@ -21,7 +21,7 @@ int main()
     int secretNumber = destrib(gen);
     int guess;
     int numberOfGuesses = 0;
-    int const maxGuesses = 3;
+    int const maxGuesses = 5;
 
     std::cout << "Gæt det tal, jeg tænker på. Du har " << maxGuesses << " forsøg ..." << std::endl;
    
@@ -32,7 +32,7 @@ int main()
         if (std::cin.fail())
         {
             std::cout << '\a';
-            std::cout << "ugyldig indtastning, kalder functionen clear efterfulgt af ignore" << std::endl;
+            std::cout << "ugyldig indtastning, brug kun heltal (1,2,3, ...)" << std::endl;
             std::cin.clear();
             std::cin.ignore(1000, '\n');
             continue;
