@@ -6,6 +6,12 @@ void visForsøg(int numberOfGuesses)
     std::cout << "du har brugt " << numberOfGuesses << " forsøg" << std::endl;
 }
 
+void visAntalAfForsøg(int maxGuesses, int numberOfGuesses)
+{
+    std::cout << "Du har " << maxGuesses - numberOfGuesses << " forsøg tilbage" << std::endl;
+    std::cout << "prøv igen" << std::endl;
+}
+
 int main()
 {
     std::random_device rd;
@@ -15,7 +21,7 @@ int main()
     int secretNumber = destrib(gen);
     int guess;
     int numberOfGuesses = 0;
-    int const maxGuesses = 5;
+    int const maxGuesses = 3;
 
 
     std::cout << "Gæt det tal, jeg tænker på. Du har " << maxGuesses << " forsøg ..." << std::endl;
@@ -33,7 +39,9 @@ int main()
             std::cin.ignore(1000, '\n');
             continue;
         }
+
         numberOfGuesses++;
+        
         visForsøg(numberOfGuesses);
 
         if (guess == secretNumber)
@@ -47,8 +55,7 @@ int main()
             std::cout << "For lavt" << std::endl; 
                 if (numberOfGuesses <= (maxGuesses-1))
                 {
-                    std::cout << "Du har " << maxGuesses - numberOfGuesses << " forsøg tilbage" << std::endl;
-                    std::cout << "prøv igen" << std::endl;                    
+                  visAntalAfForsøg(maxGuesses, numberOfGuesses);                  
                 }
         }       
              
@@ -57,8 +64,7 @@ int main()
             std::cout << "For højt" << std::endl;  
                 if (numberOfGuesses <= (maxGuesses-1))
                 {
-                    std::cout << "Du har " << maxGuesses - numberOfGuesses << " forsøg tilbage" << std::endl;
-                    std::cout << "prøv igen" << std::endl;
+                    visAntalAfForsøg(maxGuesses, numberOfGuesses);
                 }
         }
     }
