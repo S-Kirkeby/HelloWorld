@@ -1,6 +1,11 @@
 #include <iostream>
 #include <random>
 
+void visForsøg(int numberOfGuesses)
+{
+    std::cout << "du har brugt " << numberOfGuesses << " forsøg" << std::endl;
+}
+
 int main()
 {
     std::random_device rd;
@@ -10,10 +15,13 @@ int main()
     int secretNumber = destrib(gen);
     int guess;
     int numberOfGuesses = 0;
+    int const maxGuesses = 5;
 
-    std::cout << "Gæt det tal, jeg tænker på. Du har 3 forsøg ..." << std::endl;
+
+    std::cout << "Gæt det tal, jeg tænker på. Du har " << maxGuesses << " forsøg ..." << std::endl;
    
-    while (numberOfGuesses < 3)
+    
+    while (numberOfGuesses < maxGuesses)
    
     {
         std::cin >> guess;
@@ -26,6 +34,7 @@ int main()
             continue;
         }
         numberOfGuesses++;
+        visForsøg(numberOfGuesses);
 
         if (guess == secretNumber)
         {
@@ -33,24 +42,22 @@ int main()
             return 0;
         }
 
-        if (guess < secretNumber)
+        else if (guess < secretNumber)
         {
             std::cout << "For lavt" << std::endl; 
-            std::cout << "du har brugt " << numberOfGuesses << " forsøg" << std::endl;
-                if (numberOfGuesses <= 2)
+                if (numberOfGuesses <= (maxGuesses-1))
                 {
-                    std::cout << "Du har " << 3 - numberOfGuesses << " forsøg tilbage" << std::endl;
+                    std::cout << "Du har " << maxGuesses - numberOfGuesses << " forsøg tilbage" << std::endl;
                     std::cout << "prøv igen" << std::endl;                    
                 }
         }       
              
-        if (guess > secretNumber)
+        else
         {
             std::cout << "For højt" << std::endl;  
-            std::cout << "du har brugt " << numberOfGuesses << " forsøg" << std::endl;
-                if (numberOfGuesses <= 2)
+                if (numberOfGuesses <= (maxGuesses-1))
                 {
-                    std::cout << "Du har " << 3 - numberOfGuesses << " forsøg tilbage" << std::endl;
+                    std::cout << "Du har " << maxGuesses - numberOfGuesses << " forsøg tilbage" << std::endl;
                     std::cout << "prøv igen" << std::endl;
                 }
         }
