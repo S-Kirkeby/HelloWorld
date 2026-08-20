@@ -5,6 +5,7 @@
 int main()
 {
     std::string søgning = "";
+    bool target = false;
 
         std::cout<<"Velkommen til dit køleskab, hvad søger du efter? skriv venligst navn på varen nu, eller skriv 'indhold' for en inholdsliste "<<std::endl;
         
@@ -19,13 +20,22 @@ int main()
                     std::cout<<fridge[i]<<std::endl;
                 }
             }
-
-            for(int i = 0; i < fridge.size(); i++)
+            
+            else
             {
-                if(fridge[i] == søgning)
+                for(int i = 0; i < fridge.size(); i++)
                 {
+                    if(fridge[i] == søgning)
+                    {
                     std::cout<<"Her er " << søgning << " den er på index nr "<< i <<std::endl;
+                    target = true;
                     break;
+                    }
                 }
+            
+                if(target == false)
+                {
+                    std::cout<<" Jeg har desværre ikke " << søgning << " i køleskabet" << std::endl;    
+                }    
             }
 }
