@@ -92,13 +92,21 @@ int main()
                 {
                     std::cout<< "Indtast den vare du vil fjerne, brug minuskler" <<std::endl;
                     std::cin>>input;
+                    bool found = false;
                     for(int i = 0; i < fridge.size(); i++)
                         {
                             if(fridge[i] == input)
                             {
                                 fridge.erase(fridge.begin()+i);
-                            }
+                                found = true;
+                                break;
+                            }   
                         }
+                    
+                    if(found == false)
+                    {
+                        std::cout<< "Har desværre ikke " << input << " i køleskabet" <<std::endl;
+                    }
                 }
 
                 if(valg == 5)
