@@ -18,15 +18,19 @@ void indkøb(std::vector<std::string>& fridge)
 
 int main()
 {
-    std::string søgning = "";
+    std::string input = "";
     bool fridgeOnline = true;
-    bool target = false;
-    int antal = 0;
+    
+    
     int valg = 0;
 
+    std::vector<std::string> fridge = {"mælk", "smør", "ost", "æg", "yoghurt"};
+
         while(fridgeOnline == true)
-        {
-        
+        {        
+        int antal = 0;
+        bool found = false;
+
             std::cout<<"Velkommen til dit Køleskab"<<std::endl;
             std::cout<<""<<std::endl;
             std::cout<<"MENU"<<std::endl;
@@ -36,19 +40,15 @@ int main()
             std::cout<<"4) Fjern vare"<<std::endl;
             std::cout<<"5) Inspicer vare"<<std::endl;
             std::cout<<"6) Afslut"<<std::endl;
+            std::cout<<"7) tilføj indkøbsvare"<<std::endl;
 
             std::cin>>valg;
-            
-            std::vector<std::string> fridge = {"mælk", "smør", "ost", "æg", "yoghurt"};
-
-            indkøb(fridge);
-            indkøb(fridge);
             
                 if(valg == 6)
                 {
                     fridgeOnline = false;
                     std::cout<<"Køleskab lukkes"<<std::endl;
-                    break;
+                    
                 } 
 
                 if(valg == 1)
@@ -60,22 +60,39 @@ int main()
                 }
                 
                 if (valg == 2)
-                {   std::cin>>søgning;
+                {   
+                    std::cout<< " Skriv varens navn i minuskler" << std::endl;
+                    std::cin>>input;
                     for(int i = 0; i < fridge.size(); i++)
                     {
-                        if(fridge[i] == søgning)
+                        if(fridge[i] == input)
                         {
-                        std::cout<< "Her er " << søgning << " den er på index nr " << i <<std::endl;
-                        target = true;
+                        std::cout<< "Her er " << input << " den er på index nr " << i <<std::endl;
+                        found = true;
                         antal++;
                         }
                     }
-                    std::cout<<"Du har "<< antal << " " << søgning << " i alt" <<std::endl;
+                    std::cout<<"Du har "<< antal << " " << input << " i alt" <<std::endl;
                 
-                    if(target == false)
+                    if(found == false)
                     {
-                        std::cout<<" Jeg har desværre ikke " << søgning << " i køleskabet" << std::endl;    
+                        std::cout<<" Jeg har desværre ikke " << input << " i køleskabet" << std::endl;    
                     }    
+                }
+
+                if(valg == 3)
+                {    
+                    std::cout<< "Skriv varens navn og tryk på enter" <<std::endl;
+                    std::cin>>input;
+                    fridge.push_back(input);
+                    std::cout<< "Du har tilføjet " << input << " til indhold" << std::endl; 
+                }
+
+                if(valg == 7)
+                {
+                    indkøb(fridge);
+                    indkøb(fridge);
+                    indkøb(fridge);
                 }
         }
 }
