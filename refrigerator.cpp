@@ -88,6 +88,19 @@ int main()
                     std::cout<< "Du har tilføjet " << input << " til indhold" << std::endl; 
                 }
 
+                if(valg == 4)
+                {
+                    std::cout<<"Indtast den vare du vil fjerne, brug minuskler"<<std::endl;
+                    std::cin>>input;
+                    for(int i = 0; i < fridge.size(); i++)
+                        {
+                            if(fridge[i] == input)
+                            {
+                                fridge.erase(fridge.begin()+i);
+                            }
+                        }
+                };
+
                 if(valg == 7)
                 {
                     indkøb(fridge);
