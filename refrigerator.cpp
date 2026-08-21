@@ -61,7 +61,7 @@ int main()
                 
                 if (valg == 2)
                 {   
-                    std::cout<< " Skriv varens navn i minuskler" << std::endl;
+                    std::cout<< "Skriv varens navn i minuskler" << std::endl;
                     std::cin>>input;
                     for(int i = 0; i < fridge.size(); i++)
                     {
@@ -72,11 +72,11 @@ int main()
                         antal++;
                         }
                     }
-                    std::cout<<"Du har "<< antal << " " << input << " i alt" <<std::endl;
+                    std::cout<< "Du har "<< antal << " " << input << " i alt" <<std::endl;
                 
                     if(found == false)
                     {
-                        std::cout<<" Jeg har desværre ikke " << input << " i køleskabet" << std::endl;    
+                        std::cout<< "Jeg har desværre ikke " << input << " i køleskabet" << std::endl;    
                     }    
                 }
 
@@ -90,7 +90,7 @@ int main()
 
                 if(valg == 4)
                 {
-                    std::cout<<"Indtast den vare du vil fjerne, brug minuskler"<<std::endl;
+                    std::cout<< "Indtast den vare du vil fjerne, brug minuskler" <<std::endl;
                     std::cin>>input;
                     for(int i = 0; i < fridge.size(); i++)
                         {
@@ -99,7 +99,24 @@ int main()
                                 fridge.erase(fridge.begin()+i);
                             }
                         }
-                };
+                }
+
+                if(valg == 5)
+                {
+                    std::cout<< "Hvilken vare skal ændres? Brug minuskuler" <<std::endl;
+                    std::cin>>input;
+
+                    for(int i = 0; i < fridge.size(); i++)
+                    {
+                        if(fridge[i] == input)
+                            {
+                                std::cout<< "hvad skal varen ændres til? Brug minuskler" << std::endl;
+                                std::cin>>input;
+                                fridge[i] = input;
+                                std::cout<< "varen er ændret til " << input << std::endl;
+                            }
+                    }
+                }
 
                 if(valg == 7)
                 {
