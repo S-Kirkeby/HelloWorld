@@ -1,11 +1,6 @@
 #include<iostream>
 #include<random>
 
- /* int point(kastEt, kastTo, kastTre)
-        {
-            point = kastEt + kastTo + kastTre
-        } */
-
 int main()
 {
     std::random_device rd;
@@ -16,9 +11,12 @@ int main()
     int antalKast = 0;
     int point = 0;
     int kast = 0;
+   
     int kastEt = 0;
     int kastTo = 0;
     int kastTre = 0;
+    
+    
     bool shakingTheDiceCup = true;
     
     std::cout<<" ********** THE DICE GAME **********" << std::endl;
@@ -45,7 +43,7 @@ int main()
             kast = D6(generator);
             std::cout<< "Terningen viser: " << kast << "." << std::endl; 
             antalKast++;
-            
+       
             if(antalKast == 1)
             {
                 kastEt = kast;
@@ -74,7 +72,19 @@ int main()
                 std::cout << "Du fik " <<point<< " point i alt" << std::endl;
                 std::cout << "Tak for spil" << std::endl;
             }
-            
+
+            if(antalKast == 3)
+            {
+                if(kastEt == kastTo && kastEt != kastTre || kastEt == kastTre && kastEt != kastTo || kastTo == kastTre && kastTo != kastEt)
+                {
+                    std::cout<< "Du har slået et par" << std::endl;
+                }
+          
+                if(kastEt == kastTo && kastTo == kastTre)
+                {
+                    std::cout << "Du har slået tre ens!" << std::endl;
+                }
+            }
         }
 
         else if(valg == 2) //Afslutning af spillet
