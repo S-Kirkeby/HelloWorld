@@ -27,19 +27,11 @@ void aleaIactaEst(std::vector<int> &TerningeKast)
 
 int main()
 {
-    /* std::random_device rd;
-    std::mt19937 generator(rd());
-    std::uniform_int_distribution<int> D6 (1, 6); */
-
     int valg = 0;
     int antalKast = 0;
     int point = 0;
     int kast = 0;
-   
-   /*  int kastEt = 0;
-    int kastTo = 0;
-    int kastTre = 0; */
-    
+      
     bool Testmode = false;
     bool shakingTheDiceCup = true;
 
@@ -121,19 +113,6 @@ int main()
             std::cout<< "Terningen viser: " << kast << "." << std::endl; 
             antalKast++;
        
-           /*  if(antalKast == 1)
-            {
-                kastEt = kast;
-            }
-            if(antalKast == 2)
-            {
-                kastTo = kast;
-            }
-            if(antalKast == 3)
-            {
-                kastTre = kast;
-            } */
-
             point = 0;
 
             for(int i = 0; i < TerningeKast.size(); i++)
