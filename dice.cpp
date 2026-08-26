@@ -27,18 +27,18 @@ void aleaIactaEst(std::vector<int> &TerningeKast)
 
 int main()
 {
-    std::random_device rd;
+    /* std::random_device rd;
     std::mt19937 generator(rd());
-    std::uniform_int_distribution<int> D6 (1, 6);
+    std::uniform_int_distribution<int> D6 (1, 6); */
 
     int valg = 0;
     int antalKast = 0;
     int point = 0;
     int kast = 0;
    
-    int kastEt = 0;
+   /*  int kastEt = 0;
     int kastTo = 0;
-    int kastTre = 0;
+    int kastTre = 0; */
     
     bool Testmode = false;
     bool shakingTheDiceCup = true;
@@ -72,21 +72,27 @@ int main()
             Testmode = true;
             while(Testmode == true)
             {
+                TerningeKast.clear();
                 std::cout<< "Du er nu i 'Testmode'. Indtast resultater af dine kast" <<std::endl;
                 
                 std::cout<< "kast 1: " <<std::endl;
-                std::cin>> kastEt;
-                std::cout<< "kast 2: " <<std::endl;
-                std::cin>> kastTo;
-                std::cout<< "kast 3: " <<std::endl;
-                std::cin>> kastTre;
+                std::cin>> kast;
+                TerningeKast.push_back(kast);
 
-                if(erEtPar(kastEt, kastTo, kastTre))
+                std::cout<< "kast 2: " <<std::endl;
+                std::cin>> kast;
+                TerningeKast.push_back(kast);
+                
+                std::cout<< "kast 3: " <<std::endl;
+                std::cin>> kast;
+                TerningeKast.push_back(kast);
+
+                if(erEtPar(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
                 {
                     std::cout<< "Du har fået 'Et par'" <<std::endl;
                 }
                 
-                if(erTreEns(kastEt, kastTo, kastTre))
+                if(erTreEns(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
                 {
                     std::cout<< "Du har fået 'Tre ens" <<std::endl;
                 }
@@ -115,7 +121,7 @@ int main()
             std::cout<< "Terningen viser: " << kast << "." << std::endl; 
             antalKast++;
        
-            if(antalKast == 1)
+           /*  if(antalKast == 1)
             {
                 kastEt = kast;
             }
@@ -126,7 +132,7 @@ int main()
             if(antalKast == 3)
             {
                 kastTre = kast;
-            }
+            } */
 
             point = 0;
 
