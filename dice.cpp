@@ -1,5 +1,6 @@
 #include<iostream>
 #include<random>
+#include<vector>
 
 bool erEtPar(int a, int b, int c)
 {
@@ -11,6 +12,17 @@ return ( a == b && a != c ||
 bool erTreEns(int a, int b, int c)
 {
     return (a==b && a == c);
+}
+
+void aleaIactaEst(std::vector<int> &TerningeKast)
+{
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::uniform_int_distribution<int> D6 (1, 6);
+
+    int kast = D6(generator);
+
+    TerningeKast.push_back(kast);
 }
 
 int main()
@@ -30,6 +42,8 @@ int main()
     
     bool Testmode = false;
     bool shakingTheDiceCup = true;
+
+    std::vector<int> TerningeKast;
     
     std::cout<<" ********** THE DICE GAME **********" <<std::endl;
     std::cout<<" " <<std::endl;
@@ -93,7 +107,11 @@ int main()
         
         if(valg == 1)
         {
-            kast = D6(generator);
+
+            aleaIactaEst(TerningeKast);
+         
+
+            kast = TerningeKast.back();
             std::cout<< "Terningen viser: " << kast << "." << std::endl; 
             antalKast++;
        
@@ -110,7 +128,12 @@ int main()
                 kastTre = kast;
             }
 
-            point = kastEt + kastTo + kastTre;
+            point = 0;
+
+            for(int i = 0; i < TerningeKast.size(); i++)
+            {
+                point += TerningeKast[i];
+            }
 
             if(antalKast < 3)
             {
@@ -128,13 +151,18 @@ int main()
 
             if(antalKast == 3)
             {
-                if(erEtPar(kastEt, kastTo, kastTre))
+
+                std::cout<< "Første kast "<< TerningeKast[0] << std::endl;
+                std::cout<< "Andet kast "<< TerningeKast[1] << std::endl;
+                std::cout<< "Tredje kast "<< TerningeKast[2] << std::endl;
+
+                if(erEtPar(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
                 {
                     std::cout<< "Du har slået et par" << std::endl;
                     Testmode = false;
                 }
           
-                if(erTreEns(kastTo, kastTo, kastTre))
+                if(erTreEns(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
                 {
                     std::cout << "Du har slået 'Tre Ens' eller 'Et Par'" << std::endl;
                 }
