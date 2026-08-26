@@ -1,6 +1,18 @@
 #include<iostream>
 #include<random>
 
+bool erEtPar(int a, int b, int c)
+{
+return ( a == b && a != c ||
+         a == c && a != b || 
+         b == c && b != a);
+}
+
+bool erTreEns(int a, int b, int c)
+{
+    return (a==b && a == c);
+}
+
 int main()
 {
     std::random_device rd;
@@ -16,15 +28,17 @@ int main()
     int kastTo = 0;
     int kastTre = 0;
     
-    
+    bool Testmode = false;
     bool shakingTheDiceCup = true;
     
-    std::cout<<" ********** THE DICE GAME **********" << std::endl;
-    std::cout<<" " << std::endl;
-    std::cout<<" " << std::endl;
-    std::cout<<" Please press 1 to throw the die " << std::endl;
-    std::cout<<" " << std::endl;
-    std::cout<<" Press 2 to quit " << std::endl;
+    std::cout<<" ********** THE DICE GAME **********" <<std::endl;
+    std::cout<<" " <<std::endl;
+    std::cout<<" " <<std::endl;
+    std::cout<<" Please press 1 to 'Throw the die' " <<std::endl;
+    std::cout<<" " <<std::endl;
+    std::cout<<" Press 2 to 'Quit' " << std::endl;
+    std::cout<<" " <<std::endl;
+    std::cout<<" Press 9 for 'Testmode'" <<std::endl;
     
     while(shakingTheDiceCup == true)
     {   
@@ -32,10 +46,49 @@ int main()
         std::cin>> valg;
         if (std::cin.fail()) //tester om input kan læses som 'int' eller ej
         {
-            std::cout << "ugyldig indtastning, brug kun heltal (1 eller 2)" << std::endl;
+            std::cout<< "ugyldig indtastning, brug kun heltal (1 eller 2)" <<std::endl;
             std::cin.clear();  // returnerer fejltilstand til normaltilstand 
-            std::cin.ignore(100, '\n'); // ignorerer de første 100 tegn eller return 
+            std::cin.ignore(100, '\n'); // ignorerer de første 100 tegn eller til hit return 
             continue; //restart while loop
+        }
+
+        
+        if(valg == 9)
+        {
+            Testmode = true;
+            while(Testmode == true)
+            {
+                std::cout<< "Du er nu i 'Testmode'. Indtast resultater af dine kast" <<std::endl;
+                
+                std::cout<< "kast 1: " <<std::endl;
+                std::cin>> kastEt;
+                std::cout<< "kast 2: " <<std::endl;
+                std::cin>> kastTo;
+                std::cout<< "kast 3: " <<std::endl;
+                std::cin>> kastTre;
+
+                if(erEtPar(kastEt, kastTo, kastTre))
+                {
+                    std::cout<< "Du har fået 'Et par'" <<std::endl;
+                }
+                
+                if(erTreEns(kastEt, kastTo, kastTre))
+                {
+                    std::cout<< "Du har fået 'Tre ens" <<std::endl;
+                }
+
+                std::cout<< "Vil du teste igen? " <<std::endl;
+                std::cout<< "tast 1 for ja " <<std::endl;
+                std::cout<< "tast 2 for nej " <<std::endl;
+
+                std::cin>>valg;
+
+                if(valg == 2)
+                {
+                    Testmode = false;
+                }
+            }
+        
         }
         
         if(valg == 1)
@@ -75,14 +128,15 @@ int main()
 
             if(antalKast == 3)
             {
-                if(kastEt == kastTo && kastEt != kastTre || kastEt == kastTre && kastEt != kastTo || kastTo == kastTre && kastTo != kastEt)
+                if(erEtPar(kastEt, kastTo, kastTre))
                 {
                     std::cout<< "Du har slået et par" << std::endl;
+                    Testmode = false;
                 }
           
-                if(kastEt == kastTo && kastTo == kastTre)
+                if(erTreEns(kastTo, kastTo, kastTre))
                 {
-                    std::cout << "Du har slået tre ens!" << std::endl;
+                    std::cout << "Du har slået 'Tre Ens' eller 'Et Par'" << std::endl;
                 }
             }
         }
