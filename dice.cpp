@@ -14,6 +14,23 @@ bool erTreEns(int a, int b, int c)
     return (a==b && a == c);
 }
 
+void visMenu()
+{
+
+    std::cout<<" ********** THE DICE GAME **********" <<std::endl;
+    std::cout<<" *                                 *" <<std::endl;
+    std::cout<<" *                                 *" <<std::endl;
+    std::cout<<" * Press 1 to 'Throw the die'      *" <<std::endl;
+    std::cout<<" *                                 *" <<std::endl;
+    std::cout<<" * Press 2 to 'Quit'               *" << std::endl;
+    std::cout<<" *                                 *" <<std::endl;
+    std::cout<<" * Press 9 for 'Testmode'          *" <<std::endl;
+    std::cout<<" *                                 *" <<std::endl;
+    std::cout<<" *                                 *" <<std::endl;
+    std::cout<<" ***********************************" <<std::endl;
+
+}
+
 void aleaIactaEst(std::vector<int> &TerningeKast)
 {
     std::random_device rd;
@@ -23,6 +40,19 @@ void aleaIactaEst(std::vector<int> &TerningeKast)
     int kast = D6(generator);
 
     TerningeKast.push_back(kast);
+}
+
+bool validation(int& valg)
+{
+    std::cin>>valg;
+    if(std::cin.fail())
+        {
+            std::cout<< "ugyldig indtastning, brug kun heltal (1 eller 2)" <<std::endl;
+            std::cin.clear(); 
+            std::cin.ignore(100, '\n');
+            return false;
+        }
+    return true;
 }
 
 int main()
@@ -37,28 +67,14 @@ int main()
 
     std::vector<int> TerningeKast;
     
-    std::cout<<" ********** THE DICE GAME **********" <<std::endl;
-    std::cout<<" " <<std::endl;
-    std::cout<<" " <<std::endl;
-    std::cout<<" Please press 1 to 'Throw the die' " <<std::endl;
-    std::cout<<" " <<std::endl;
-    std::cout<<" Press 2 to 'Quit' " << std::endl;
-    std::cout<<" " <<std::endl;
-    std::cout<<" Press 9 for 'Testmode'" <<std::endl;
-    
     while(shakingTheDiceCup == true)
     {   
-        
-        std::cin>> valg;
-        if (std::cin.fail()) //tester om input kan læses som 'int' eller ej
+        visMenu();
+        if (!validation(valg))
         {
-            std::cout<< "ugyldig indtastning, brug kun heltal (1 eller 2)" <<std::endl;
-            std::cin.clear();  // returnerer fejltilstand til normaltilstand 
-            std::cin.ignore(100, '\n'); // ignorerer de første 100 tegn eller til hit return 
-            continue; //restart while loop
+            continue; //Stopper og kører fra starten af While-løkken igen og modtager et nyt input fra brugere
         }
 
-        
         if(valg == 9)
         {
             Testmode = true;
@@ -100,14 +116,12 @@ int main()
                     Testmode = false;
                 }
             }
-        
         }
         
         if(valg == 1)
         {
 
             aleaIactaEst(TerningeKast);
-         
 
             kast = TerningeKast.back();
             std::cout<< "Terningen viser: " << kast << "." << std::endl; 
@@ -162,7 +176,7 @@ int main()
 
         else
         {
-            std::cout<< "ugyldigt input tryk venligst kun 1 eller 2" <<std::endl;
+            std::cout<< "Forkert menuvalg. 1 for spil, 2 for afslut 9, for testmode" <<std::endl;
             valg = 0;
         }
     }
