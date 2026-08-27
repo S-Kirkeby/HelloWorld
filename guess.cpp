@@ -66,5 +66,7 @@ int main()
     }
 
     std::cout << "æv! du tabte! " << "Det hemmelige tal var: " << secretNumber << std::endl;
+    std::cout<< "Tak for spil - tryk 1 for at afslutte" << std::endl;
+    std::cin >> guess;
 
 }
