@@ -55,6 +55,58 @@ bool validation(int& valg)
     return true;
 }
 
+void testModeTwo(std::vector<int>& TerningeKast)
+{
+    bool kørTest = true;
+
+    while(kørTest ==true)
+    {
+        int valg = 0;
+        int kast = 0;
+
+        TerningeKast.clear();
+        std::cout<< "Du er nu i 'Testmode'. Indtast resultater af dine kast" <<std::endl;
+                
+        std::cout<< "kast 1: " <<std::endl;
+        std::cin>> kast;
+        TerningeKast.push_back(kast);
+
+        std::cout<< "kast 2: " <<std::endl;
+        std::cin>> kast;
+        TerningeKast.push_back(kast);
+               
+        std::cout<< "kast 3: " <<std::endl;
+        std::cin>> kast;
+        TerningeKast.push_back(kast);
+
+        if(erEtPar(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
+        {
+            std::cout<< "Du har fået 'Et par'" <<std::endl;
+        }
+                
+        if(erTreEns(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
+            {
+                std::cout<< "Du har fået 'Tre ens" <<std::endl;
+            }
+
+        std::cout<< "vil du teste igen?"<< std::endl;
+        std::cout<< "1 for Ja"<< std::endl;
+        std::cout<< "2 for Nej"<< std::endl;
+        
+        std::cin>>valg;
+
+        if(valg == 2)
+        {
+
+            std::cout<< "Test afsluttet" << std::endl;
+            valg = 0;
+            TerningeKast.clear();
+            kørTest=false;
+        }
+    }
+
+}
+
 int main()
 {
     int valg = 0;
@@ -77,45 +129,7 @@ int main()
 
         if(valg == 9)
         {
-            Testmode = true;
-            while(Testmode == true)
-            {
-                TerningeKast.clear();
-                std::cout<< "Du er nu i 'Testmode'. Indtast resultater af dine kast" <<std::endl;
-                
-                std::cout<< "kast 1: " <<std::endl;
-                std::cin>> kast;
-                TerningeKast.push_back(kast);
-
-                std::cout<< "kast 2: " <<std::endl;
-                std::cin>> kast;
-                TerningeKast.push_back(kast);
-                
-                std::cout<< "kast 3: " <<std::endl;
-                std::cin>> kast;
-                TerningeKast.push_back(kast);
-
-                if(erEtPar(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
-                {
-                    std::cout<< "Du har fået 'Et par'" <<std::endl;
-                }
-                
-                if(erTreEns(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
-                {
-                    std::cout<< "Du har fået 'Tre ens" <<std::endl;
-                }
-
-                std::cout<< "Vil du teste igen? " <<std::endl;
-                std::cout<< "tast 1 for ja " <<std::endl;
-                std::cout<< "tast 2 for nej " <<std::endl;
-
-                std::cin>>valg;
-
-                if(valg == 2)
-                {
-                    Testmode = false;
-                }
-            }
+            testModeTwo(TerningeKast);
         }
         
         if(valg == 1)
