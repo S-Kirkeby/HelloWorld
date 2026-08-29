@@ -157,7 +157,7 @@ int main()
             }
         }   
                 
-        if(valg == 1)
+        else if(valg == 1)
         {
             aleaIactaEst(TerningeKast);
 
