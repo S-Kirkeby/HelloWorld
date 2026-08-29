@@ -55,9 +55,11 @@ bool validation(int& valg)
     return true;
 }
 
-void testModeTwo(std::vector<int>& TerningeKast)
+bool testModeTwo(std::vector<int>& TerningeKast)
 {
     bool kørTest = true;
+    bool erEtParKørt = false;
+    bool erTreEnsKørt = false; 
 
     while(kørTest ==true)
     {
@@ -82,12 +84,14 @@ void testModeTwo(std::vector<int>& TerningeKast)
         if(erEtPar(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
         {
             std::cout<< "Du har fået 'Et par'" <<std::endl;
+            erEtParKørt = true;
         }
                 
         if(erTreEns(TerningeKast[0], TerningeKast[1], TerningeKast[2]))
-            {
-                std::cout<< "Du har fået 'Tre ens" <<std::endl;
-            }
+        {
+            std::cout<< "Du har fået 'Tre ens" <<std::endl;
+            erTreEnsKørt = true;
+        }
 
         std::cout<< "vil du teste igen?"<< std::endl;
         std::cout<< "1 for Ja"<< std::endl;
@@ -97,14 +101,26 @@ void testModeTwo(std::vector<int>& TerningeKast)
 
         if(valg == 2)
         {
-
             std::cout<< "Test afsluttet" << std::endl;
             valg = 0;
             TerningeKast.clear();
+
+        if(erEtParKørt && erTreEnsKørt)
+        {
+            return true;
+        }
+        if(erEtParKørt && !erTreEnsKørt || !erEtParKørt && erTreEnsKørt)
+        {   
+            return false;
+        }
+        if(!erEtParKørt && !erTreEnsKørt)
+        {   
+            return false;
+        }
             kørTest=false;
         }
     }
-
+    return false;
 }
 
 int main()
@@ -129,12 +145,20 @@ int main()
 
         if(valg == 9)
         {
-            testModeTwo(TerningeKast);
-        }
-        
+            bool testResultat = testModeTwo(TerningeKast);
+            
+            if(testResultat)
+            {
+                std::cout<< "Begge test er gennemført" <<std::endl;
+            }
+            else
+            {
+                std::cout<< "Kun dele af testen er gennemført" <<std::endl;
+            }
+        }   
+                
         if(valg == 1)
         {
-
             aleaIactaEst(TerningeKast);
 
             kast = TerningeKast.back();
