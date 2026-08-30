@@ -1,57 +1,26 @@
 #include<iostream>
 
- bool erEtPar(int a, int b, int c)
-        {
-        return (a == b && a != c ||
-                a == c && a != b ||
-                b == c && b != a);
-        }
+
+void changePointer(int **pp, int *newAddress)
+{
+    *pp = newAddress;
+}
 
 int main()
 {
-     
-    bool testErEtPar = true;
-    bool testErTreEns = true;
-    
-    // Skift kommentaren til de andre sæt af {} for let at skifte test betingelser
-    {
-    bool testErEtPar = true;
-    bool testErTreEns = false;
-    }
-    //{ Skift kommentaren til de andre sæt af {} for let at skifte test betingelser
+    int a = 5;
+    int b = 10;
 
-    //{ Jeg bruger scope til at holde de konfliktende udtryk ude fra hinanden
-    {
-    bool testErEtPar = false;
-    bool testErTreEns = true;
-    }
-    //} // Skift mellem testscenarierne ved at kommentere de andre sæt ud.
+    int *p = &a;
 
-    //{       
-    {
-    bool testErEtPar = false;
-    bool testErTreEns = false;
-    }
-    //}
+    std::cout << "Foer:" << std::endl;
+    std::cout << "p:  " << p << std::endl;
+    std::cout << "*p: " << *p << std::endl;
 
-    if(testErEtPar && !testErTreEns)
-    {
-        std::cout<< "Kun Par testen blev gennemført" << std::endl;
-    }
+    changePointer(&p, &b);
 
+    std::cout << "\nEfter:" << std::endl;
+    std::cout << "p:  " << p << std::endl;
+    std::cout << "*p: " << *p << std::endl;
 
-    else if(!testErEtPar && testErTreEns)
-    {
-        std::cout<<"Kun 3Ens testen blev gennemført" <<std::endl;
-    }
-    
-    else if(!testErEtPar && !testErTreEns)
-    {
-        std::cout<<"ingen test er gennemført" << std::endl;
-    }
-
-    else if(testErEtPar && testErTreEns)
-    {
-        std::cout<<"Begge test er gennemført" << std::endl;
-    }
 }
